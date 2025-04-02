@@ -115,18 +115,14 @@ const forgotpassword = async (req,res) => {
         const mailContent = `<html>
                                 <a href ="${url}">reset password</a>
                             </html>`
-
         await mailUtil.sendingMail(founduser.email,"reset password",mailContent);
         res.json({
             message:"password reset link sent to your mail",
         });
-
     }else{
-
         res.json({
             message:"user not found register first please",
         })
-
     }
 
 }

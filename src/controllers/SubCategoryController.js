@@ -24,6 +24,14 @@ const getSubCategory = async(req,res) => {
     }
 }
 
+const getSubcategoryByCategoryId = async(req,res) => {
+    try{
+        const categories = await SubCategoryModel.findById(req.params.categoryId)
+    }catch(err){
+        res.status(500).json({message:err})
+    }
+}
+
 
 module.exports = {
     addSubCategory,getSubCategory

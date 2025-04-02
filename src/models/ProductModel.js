@@ -10,33 +10,12 @@ const productSchema = new Schema({
     //     type: String,
     //     required: true
     // },
-    stockeepingunit:{
-        type:String,
-        required:true,
-        unique:true,
-    },
     price:{
-        type:Number,
-        required:true,
-    },
-    mrp:{
         type:Number,
         required:true,
     },
     discountinpercentage:{
         type:Number,
-        required:true,
-    },
-    weight:{
-        type:String,
-        required:true,
-    },
-    unitOfMeasurement:{
-        type:String,
-        required:true,
-    },
-    expirydate:{
-        type:String,
         required:true,
     },
     status:{

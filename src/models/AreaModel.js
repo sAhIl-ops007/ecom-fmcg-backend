@@ -7,6 +7,10 @@ const areaSchema = new Schema({
         required: true,
         unique: true
     },
+    pincode:{
+        type: Number,
+        required: true,
+    },
     cityId:{
         type:Schema.Types.ObjectId,
         ref:"City",
@@ -14,10 +18,6 @@ const areaSchema = new Schema({
     stateId:{
         type:Schema.Types.ObjectId,
         ref:"State",
-    },
-    pincode:{
-        type: Number,
-        required: true,
     }
 },{
     timestamps: true

@@ -1,7 +1,8 @@
 const productModel = require ("../models/ProductModel")
 const multer = require ("multer");
-const path = require ("path");
-const cloudinaryutil = require ("../utils/Cloudnary")
+// const path = require ("path");
+const cloudinaryutil = require ("../utils/Cloudnary");
+const ProductModel = require("../models/ProductModel");
 
 //storage engine
 
@@ -52,7 +53,6 @@ const getAllProduct = async (req, res) => {
 
 }
 
-
 const addProductWithFile = async(req,res) => {
 
     try{
@@ -92,7 +92,21 @@ const addProductWithFile = async(req,res) => {
     }
 }
 
+const getProductByProductId = async(req,res) => {
+    try{
+        const findProductById = await ProductModel.findById(req.params.id)
+        res.status(201).json({
+            message:"Product found Successfully",
+            data:findProductById
+        })
+    }catch(err){
+        res.status(500).json({message:err})
+    }
+    
+
+}
+
 
 module.exports = {
-    addProduct,getAllProduct,addProductWithFile
+    addProduct,getAllProduct,addProductWithFile,getProductByProductId
 }
