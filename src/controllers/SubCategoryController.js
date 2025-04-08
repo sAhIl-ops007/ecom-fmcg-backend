@@ -24,15 +24,21 @@ const getSubCategory = async(req,res) => {
     }
 }
 
-const getSubcategoryByCategoryId = async(req,res) => {
+const getSubcategoryByCategoryId = async (req,res) => {
     try{
-        const categories = await SubCategoryModel.findById(req.params.categoryId)
+        const categories = await SubCategoryModel.find({ categoryId:req.params.categoryId })
+        res.status(200).json({
+            message:"sub-category found",
+            data:categories
+        })
     }catch(err){
-        res.status(500).json({message:err})
+        res.status(500).json({
+        message:"sub-category not found",
+    });
     }
 }
 
 
 module.exports = {
-    addSubCategory,getSubCategory
+    addSubCategory,getSubCategory,getSubcategoryByCategoryId
 }

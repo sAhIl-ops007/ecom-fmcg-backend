@@ -35,60 +35,45 @@ const addProduct = async (req,res) => {
 
 const getAllProduct = async (req, res) => {
 
-    try{
-        
+    try{       
         const products = await productModel.find();
         res.status(200).json({
             message: "All product fetched successfully",
             data: products
         })
-
     }catch(err){
-
         res.status(500).json({
             message: err
         })
-
     }
-
 }
 
 const addProductWithFile = async(req,res) => {
 
     try{
-
         upload(req,res,async (err) =>  {
             if(err){
                 console.log(err);
                 res.status(500).json({
                     message: err.message,
-                });
-    
-            }else{
-                
+                });   
+            }else{               
                 const cloundinaryResponse = await cloudinaryutil.uploadFileToCloudinary(req.file);
                 console.log(cloundinaryResponse);
                 console.log(req.body);
-
                 req.body.productURL = cloundinaryResponse.secure_url;
-
                 const savedProduct = await productModel.create(req.body);
-
                 res.status(200).json({
                     message: "productimage saved successfully",
                     data: savedProduct,
                 });
-
             }
         })
-
     }
     catch(err){
-
         req.json({
             message: err
         })
-
     }
 }
 
@@ -102,11 +87,23 @@ const getProductByProductId = async(req,res) => {
     }catch(err){
         res.status(500).json({message:err})
     }
-    
+}
 
+const getProductBySubcategoryId = async(req,res) => {
+    try{
+        const findProductBySubcategoryId = await ProductModel.find({subCategoryId:req.params.subCategoryId})
+        res.status(200).json({
+            message:"product found successfully by category ID",
+            data:findProductBySubcategoryId
+        })
+    }catch(err){
+        res.status(500).json({
+            message:err
+        })
+    }
 }
 
 
 module.exports = {
-    addProduct,getAllProduct,addProductWithFile,getProductByProductId
+    addProduct,getAllProduct,addProductWithFile,getProductByProductId,getProductBySubcategoryId
 }

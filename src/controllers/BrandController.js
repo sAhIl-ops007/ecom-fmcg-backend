@@ -14,7 +14,7 @@ const addBrand = async(req,res) => {
 
 const getBrand = async (req,res) => {
     try{
-         const allBrand = await BrandModel.find().populate("subCategoryId").populate("categoryId")
+        const allBrand = await BrandModel.find().populate("subCategoryId").populate("categoryId")
                 res.status(200).json({
                     message:"Brand Fetched succesfull",
                     data:allBrand
