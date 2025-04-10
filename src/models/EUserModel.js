@@ -29,7 +29,7 @@ const userSchema = new Schema({
     },
     roleId:{
         type:Schema.Types.ObjectId,
-         ref:"roles"
+        ref:"roles"
     }
 
 },{timestamps: true})
